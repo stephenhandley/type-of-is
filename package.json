@@ -1,0 +1,23 @@
+{
+  "name": "strtype",
+  "version": "0.0.1",
+  "description": "Determine and compare types using {}.toString",
+  "main": "index.js",
+  "author": "Stephen Handley <stephen@hello10.com> (http://hello10.com/)",
+  "license": "BSD",
+  
+  "scripts": {
+    "test": "node test/all.js"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephenhandley/strtype"
+  },
+  
+  "keywords": [
+    "type",
+    "checking",
+    "toString"
+  ]
+}
