@@ -1,18 +1,22 @@
-function type(obj) {
+function ofs(obj) {
   return {}.toString.call(obj).slice(1, -1).split(' ').pop();
+}
+
+function of(obj) {
+  if ((obj === null) || (obj === undefined)) {
+    return obj;
+  } else {
+    return obj.constructor;
+  }
 };
 
-function isType(obj, obj_type) {
-  if ((obj_type === null) || (obj_type === undefined)) {
-    obj_type = type(obj_type);
-  } else if (!(type(obj_type) === 'String')) {
-    obj_type = obj_type.name.toString();
-  }
-  
-  return (type(obj) === obj_type);
+function is(obj, type) {
+  var typer = (of(type) === String) ? ofs : of
+  return (typer(obj) === type);
 };
 
 module.exports = {
-  of: type,
-  is: isType
+  of: of,
+  ofs: ofs,
+  is: is
 };

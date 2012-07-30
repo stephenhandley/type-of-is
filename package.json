@@ -1,7 +1,7 @@
 {
-  "name": "strtype",
-  "version": "0.0.1",
-  "description": "Determine and compare types using {}.toString",
+  "name": "type-of-is",
+  "version": "0.0.2",
+  "description": "Determine and test types using constructor.name {}.toString",
   "main": "index.js",
   "author": "Stephen Handley <stephen@hello10.com> (http://hello10.com/)",
   "license": "BSD",
@@ -12,7 +12,7 @@
   
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephenhandley/strtype"
+    "url": "https://github.com/stephenhandley/type-of-is"
   },
   
   "keywords": [

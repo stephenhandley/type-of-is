@@ -1,64 +1,86 @@
 var path = require('path');
 var assert = require('assert');
 
-var strtype = require(path.join(__dirname, '..'));
+var type = require(path.join(__dirname, '..'));
 
 try {
   var of_expectations = [
-    ["hi", "String"],
-    [{}, "Object"],
-    [[], "Array"],
-    [null, "Null"],
-    [1, "Number"],
-    [true, "Boolean"],
-    [function() {}, "Function"],
-    [undefined, "Undefined"]
+    ["hi", String, "String"],
+    [{}, Object, "Object"],
+    [[], Array, "Array"],
+    [null, null, "Null"],
+    [1, Number, "Number"],
+    [true, Boolean, "Boolean"],
+    [function() {}, Function, "Function"],
+    [new Date(), Date, "Date"],
+    [new Error(), Error, "Error"],
+    [/blah|foo|bar/, RegExp, "RegExp"],
+    [undefined, undefined, "Undefined"],
   ];
   
   of_expectations.forEach(function(expectation) {
-    assert.equal(strtype.of(expectation[0]), expectation[1]);
+    assert.strictEqual(type.of(expectation[0]), expectation[1], "testing of(" + expectation[0] + ")");
+    assert.strictEqual(type.ofs(expectation[0]), expectation[2], "testing ofs(" + expectation[0] + ")");
   });
   
+  var types = [
+    String, "String",
+    Object, "Object",
+    Array, "Array",
+    null, "Null",
+    Number, "Number", 
+    Boolean, "Boolean", 
+    Function, "Function",
+    Date, "Date",
+    Error, "Error",
+    RegExp, "RegExp",
+    undefined, "Undefined"
+  ];
+    
   var is_expectations = [
     [
       ["hi", "there", "1234"],     // values
       [String, "String"],  // expect true
-      ["Object", "Array", "Null", "Number", "Boolean", "Function", "Undefined"], // expect false
     ],
     [
       [{}, {one: 1, two: 2}], 
-      [Object, "Object"],
-      ["String", "Array", "Null", "Number", "Boolean", "Function", "Undefined"]
+      [Object, "Object"]
     ],
     [
-      [[], [1,2,3]], 
-      [Array, "Array"], 
-      ["String", "Object", "Null", "Number", "Boolean", "Function", "Undefined"]
+      [[], [1,2,3], ["string", 2, false]], 
+      [Array, "Array"]
     ],
     [
       [null], 
-      [null, "Null"],
-      ["String", "Object", "Array", "Number", "Boolean", "Function", "Undefined"]
+      [null, "Null"]
     ],
     [
       [1, 20324, 2342.425],
-      [Number, "Number"],
-      ["String", "Object", "Array", "Null", "Boolean", "Function", "Undefined"]
+      [Number, "Number"]
     ],
     [ 
       [true, false],
-      [Boolean, "Boolean"],
-      ["String", "Object", "Array", "Null", "Number", "Function", "Undefined"]
+      [Boolean, "Boolean"]
     ],
     [
       [{}.toString, function() { return 1 + 2; }],
-      [Function, "Function"],
-      ["String", "Object", "Array", "Null", "Number", "Boolean", "Undefined"]
+      [Function, "Function"]
+    ],
+    [
+      [new Date()],
+      [Date, "Date"]
+    ],
+    [
+      [new Error("oh no"), (function () { try { throw new Error("blah"); } catch (e) { return e; }})()],
+      [Error, "Error"]
+    ],
+    [
+      [/foo|bar/, /.*abc/],
+      [RegExp, "RegExp"]
     ],
     [
       [undefined],
-      [undefined, "Undefined"],
-      ["String", "Object", "Array", "Null", "Number", "Boolean", "Function"]
+      [undefined, "Undefined"]
     ]
   ];
   
@@ -70,10 +92,13 @@ try {
   is_expectations.forEach(function(group) {
     group[0].forEach(function(obj) {
       group[1].forEach(function(true_type) {
-        assert.equal(strtype.is(obj, true_type), true);
+        assert.equal(type.is(obj, true_type), true,  "testing " + obj + ' is ' + true_type);
       });
-      group[2].forEach(function(false_type) {
-        assert.equal(strtype.is(obj, false_type), false);
+            
+      types.forEach(function(false_type) {
+        if (group[1].indexOf(false_type) == -1) {
+          assert.strictEqual(type.is(obj, false_type), false, "testing " + obj + ' is ' + false_type);
+        }
       });
     });
   });
