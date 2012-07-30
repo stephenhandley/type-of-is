@@ -8,7 +8,7 @@ Determine and test types using constructor or Object.toString
 
 # Installation
 ```
-npm install type
+npm install type-of-is
 ```
 
 or in package.json 
@@ -23,11 +23,13 @@ or in package.json
 ```
 
 # Usage
+```
 var type = require('type-of-is');
 
 type.of(obj)        provides constructor type of an object
 type.ofs(obj)       provides type as String from {}.toString
 type.is(obj, type)  tests whether obj is of type (constructor or String)
+```
 
 ```
 var type = require('type-of-is');
