@@ -67,7 +67,7 @@ console.log(type.is([], Array));          // true
 console.log(type.is(new Date(), Date));   // true
 console.log(type.is(new Date(), Object)); // false
 
-var s = "hihihi"
+var s = "hihihi";
 var Stringy = type.of(s);
 var t = new Stringy("hihihi");
 console.log((s == t));                    // true
