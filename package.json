@@ -22,7 +22,9 @@
     "type",
     "types",
     "typeof",
-    "toString"
+    "toString",
+    "type.of",
+    "type.is"
   ],
   
   "directories" : {
