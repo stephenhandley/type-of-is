@@ -77,4 +77,5 @@ console.log((s === t));                   // false
 
 ```
 
-
+#Build status
+[![build status](https://secure.travis-ci.org/stephenhandley/type-of-is.png)](http://travis-ci.org/stephenhandley/type-of-is)
