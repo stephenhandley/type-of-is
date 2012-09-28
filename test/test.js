@@ -5,7 +5,7 @@ var Asserts = require('asserts');
 var Type = require(Path.join(__dirname, '..'));
 
 Asserts({
-  "Type.of and Type.ofs should properly find types": function () {
+  "Type, Type.of, and Type.string should properly find types": function () {
     var of_expectations = [
       ["hi", String, "String"],
       [{}, Object, "Object"],
@@ -21,13 +21,13 @@ Asserts({
     ];
 
     of_expectations.forEach(function(expectation) {
-      Assert.strictEqual(Type(expectation[0]), expectation[1], "testing of(" + expectation[0] + ")");
-      Assert.strictEqual(Type.of(expectation[0]), expectation[1], "testing of(" + expectation[0] + ")");
-      Assert.strictEqual(Type.ofs(expectation[0]), expectation[2], "testing ofs(" + expectation[0] + ")");
+      Assert.strictEqual(Type(expectation[0]), expectation[1], "testing Type(" + expectation[0] + ")");
+      Assert.strictEqual(Type.of(expectation[0]), expectation[1], "testing Type.of(" + expectation[0] + ")");
+      Assert.strictEqual(Type.string(expectation[0]), expectation[2], "testing Type.string(" + expectation[0] + ")");
     });
   },
   
-  "Type.is should properly check types": function () {
+  "Type and Type.is should properly check types": function () {
     var types = [
       String, "String",
       Object, "Object",
@@ -97,11 +97,13 @@ Asserts({
     is_expectations.forEach(function(group) {
       group[0].forEach(function(obj) {
         group[1].forEach(function(true_type) {
-          Assert.equal(Type.is(obj, true_type), true,  "testing " + obj + ' is ' + true_type);
+          Assert(Type(obj, true_type), "testing " + obj + ' is ' + true_type);
+          Assert(Type.is(obj, true_type), "testing " + obj + ' is ' + true_type);
         });
 
         types.forEach(function(false_type) {
           if (group[1].indexOf(false_type) == -1) {
+            Assert.strictEqual(Type(obj, false_type), false, "testing " + obj + ' is ' + false_type);
             Assert.strictEqual(Type.is(obj, false_type), false, "testing " + obj + ' is ' + false_type);
           }
         });
