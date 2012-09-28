@@ -4,7 +4,7 @@ Determine and test types using constructor or Object.toString
 
 # Latest Version
 
-0.0.2
+1.0.0
 
 # Installation
 ```
@@ -17,7 +17,7 @@ or in package.json
 {
   ...
   "dependencies": {
-    "type-of-is": "~0.0.2"
+    "type-of-is": "~1.0.0"
   }
 }
 ```
