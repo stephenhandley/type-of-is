@@ -15,8 +15,7 @@ function is(obj, type) {
   return (typer(obj) === type);
 };
 
-module.exports = {
-  of: of,
-  ofs: ofs,
-  is: is
-};
+module.exports = of;
+module.exports.of = of;
+module.exports.ofs = ofs;
+module.exports.is = is;

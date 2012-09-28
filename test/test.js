@@ -21,6 +21,7 @@ Asserts({
     ];
 
     of_expectations.forEach(function(expectation) {
+      Assert.strictEqual(Type(expectation[0]), expectation[1], "testing of(" + expectation[0] + ")");
       Assert.strictEqual(Type.of(expectation[0]), expectation[1], "testing of(" + expectation[0] + ")");
       Assert.strictEqual(Type.ofs(expectation[0]), expectation[2], "testing ofs(" + expectation[0] + ")");
     });
