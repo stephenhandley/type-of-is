@@ -1,42 +1,62 @@
-var type = require('.');
+var Type = require('./');
 
-console.log(type.of('hi there ok'));  // [Function: String]
-console.log(type.of(342));            // [Function: Number]
-console.log(type.of({}));             // [Function: Object]
-console.log(type.of([1, 2, 3]));      // [Function: Array]
-console.log(type.of(null));           // null
-console.log(type.of(undefined));      // undefined
-console.log(type.of(true));           // [Function: Boolean]
-console.log(type.of(function () {})); // [Function: Function]
-console.log(type.of(/abcd/));         // [Function: RegExp]
-console.log(type.of(new Date()));     // [Function: Date]
-console.log(type.of(new Error()));    // [Function: Error]
 
-console.log(type.ofs('hi there ok'));  // "String"
-console.log(type.ofs(342));            // "Number"
-console.log(type.ofs({}));             // "Object"
-console.log(type.ofs([1, 2, 3]));      // "Array"
-console.log(type.ofs(null));           // "Null"
-console.log(type.ofs(undefined));      // "Undefined"
-console.log(type.ofs(true));           // "Boolean"
-console.log(type.ofs(function () {})); // "Function"
-console.log(type.ofs(/abcd/));         // "RegExp"
-console.log(type.ofs(new Date()));     // "Date"
-console.log(type.ofs(new Error()));    // "Error"
+// Type.of(arg) and Type(one_argument) return constructor of type determined from ({}).toString
+console.log(Type.of('hi there ok'));  // [Function: String]
+console.log(Type.of(342));            // [Function: Number]
+console.log(Type.of({}));             // [Function: Object]
+console.log(Type.of([1, 2, 3]));      // [Function: Array]
+console.log(Type.of(null));           // null
+console.log(Type.of(undefined));      // undefined
+console.log(Type(true));              // [Function: Boolean]
+console.log(Type(function () {}));    // [Function: Function]
+console.log(Type(/abcd/));            // [Function: RegExp]
+console.log(Type(new Date()));        // [Function: Date]
+console.log(Type(new Error()));       // [Function: Error]
 
-console.log(type.is(true, Boolean));      // true
-console.log(type.is("1231", Number));     // false
-console.log(type.is("1231", String));     // true
-console.log(type.is("1231", "String"));   // true
-console.log(type.is("1231", Object));     // false
-console.log(type.is([], Object));         // false
-console.log(type.is({}, Object));         // true
-console.log(type.is([], Array));          // true
-console.log(type.is(new Date(), Date));   // true
-console.log(type.is(new Date(), Object)); // false
+// Type.string(arg) returns the string name of constructor
+console.log(Type.string('hi there ok'));  // "String"
+console.log(Type.string(342));            // "Number"
+console.log(Type.string({}));             // "Object"
+console.log(Type.string([1, 2, 3]));      // "Array"
+console.log(Type.string(null));           // "Null"
+console.log(Type.string(undefined));      // "Undefined"
+console.log(Type.string(true));           // "Boolean"
+console.log(Type.string(function () {})); // "Function"
+console.log(Type.string(/abcd/));         // "RegExp"
+console.log(Type.string(new Date()));     // "Date"
+console.log(Type.string(new Error()));    // "Error"
+
+// Type.is(object, type) and Type(object, type) returns true if object is of type 
+// as determined by Type.of 
+console.log(Type.is(true, Boolean));      // true
+console.log(Type.is("1231", Number));     // false
+console.log(Type.is("1231", String));     // true
+console.log(Type.is("1231", "String"));   // true
+console.log(Type.is("1231", Object));     // false
+console.log(Type([], Object));            // false
+console.log(Type({}, Object));            // true
+console.log(Type([], Array));             // true
+console.log(Type(new Date(), Date));      // true
+console.log(Type(new Date(), Object));    // false
 
 var s = "hihihi";
-var Stringy = type.of(s);
+var Stringy = Type.of(s);
 var t = new Stringy("hihihi");
 console.log((s == t));                    // true
 console.log((s === t));                   // false
+
+
+// User defined objects should be instances of Objects but also can get actual constructor type
+function Person (name) {
+  this.name = name;
+}
+Person.prototype.barf = function () {
+  return this.name + " just barfed!";
+}
+var ralph = new Person('Ralph');
+console.log(Type.of(ralph));                 // [Function: Person]
+console.log(Type.is(ralph, Person));         // true
+console.log(Type.instance(ralph, Person));   // true
+console.log(Type.instance(ralph, Object));   // true
+

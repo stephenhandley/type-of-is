@@ -4,6 +4,13 @@ var Asserts = require('asserts');
 
 var Type = require(Path.join(__dirname, '..'));
 
+function Person (name) {
+  this.name = name;
+}
+Person.prototype.barf = function () {
+  return this.name + " just barfed!";
+}
+
 Asserts({
   "Type, Type.of, and Type.string should properly find types": function () {
     var of_expectations = [
@@ -18,6 +25,7 @@ Asserts({
       [new Error(), Error, "Error"],
       [/blah|foo|bar/, RegExp, "RegExp"],
       [undefined, undefined, "Undefined"],
+      [new Person('ralph'), Person, "Person"]
     ];
 
     of_expectations.forEach(function(expectation) {
@@ -27,65 +35,70 @@ Asserts({
     });
   },
   
-  "Type and Type.is should properly check types": function () {
+  "Type and Type.is should properly check built-in types": function () {
     var types = [
-      String, "String",
-      Object, "Object",
-      Array, "Array",
-      null, "Null",
-      Number, "Number", 
-      Boolean, "Boolean", 
-      Function, "Function",
-      Date, "Date",
-      Error, "Error",
-      RegExp, "RegExp",
-      undefined, "Undefined"
+      String,
+      Object,
+      Array,
+      null,
+      Number, 
+      Boolean,
+      Function,
+      Date,
+      Error,
+      RegExp,
+      undefined,
+      Person
     ];
 
     var is_expectations = [
       [
         ["hi", "there", "1234"],     // values
-        [String, "String"],  // expect true
+        String,  // expect true
       ],
       [
         [{}, {one: 1, two: 2}], 
-        [Object, "Object"]
+        Object
       ],
       [
         [[], [1,2,3], ["string", 2, false]], 
-        [Array, "Array"]
+        Array
       ],
       [
         [null], 
-        [null, "Null"]
+        null
       ],
       [
         [1, 20324, 2342.425],
-        [Number, "Number"]
+        Number
       ],
       [ 
         [true, false],
-        [Boolean, "Boolean"]
+        Boolean
       ],
       [
         [{}.toString, function() { return 1 + 2; }],
-        [Function, "Function"]
+        Function
       ],
       [
         [new Date()],
-        [Date, "Date"]
+        Date
       ],
       [
         [new Error("oh no"), (function () { try { throw new Error("blah"); } catch (e) { return e; }})()],
-        [Error, "Error"]
+        Error
       ],
       [
         [/foo|bar/, /.*abc/],
-        [RegExp, "RegExp"]
+        RegExp
       ],
       [
         [undefined],
-        [undefined, "Undefined"]
+        undefined
+      ],
+      [
+        [new Person('ralph'), new Person('joe')],
+        Person
       ]
     ];
 
@@ -96,18 +109,24 @@ Asserts({
     // [2] are arg 2 / types to compare against that should return false
     is_expectations.forEach(function(group) {
       group[0].forEach(function(obj) {
-        group[1].forEach(function(true_type) {
-          Assert(Type(obj, true_type), "testing " + obj + ' is ' + true_type);
-          Assert(Type.is(obj, true_type), "testing " + obj + ' is ' + true_type);
-        });
-
+        var true_type = group[1];
+        Assert(Type(obj, true_type), "testing " + obj + ' is ' + true_type);
+        Assert(Type.is(obj, true_type), "testing " + obj + ' is ' + true_type);
+        
         types.forEach(function(false_type) {
-          if (group[1].indexOf(false_type) == -1) {
+          if (group[1] !== false_type) {
             Assert.strictEqual(Type(obj, false_type), false, "testing " + obj + ' is ' + false_type);
             Assert.strictEqual(Type.is(obj, false_type), false, "testing " + obj + ' is ' + false_type);
           }
         });
       });
     });
+  },
+  
+  "Type.instance should work (this is stupid to test)": function () {
+    var ralph = new Person('ralph');
+    Assert(Type.instance(ralph, Person));
+    Assert(Type.instance(ralph, Object));
+    Assert(!Type.instance(ralph, String));
   }
 });
