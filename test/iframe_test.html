@@ -17,7 +17,8 @@
       console.log(array instanceof Array); //false
       console.log(array instanceof IFrameArray); //true;
       console.log(Type.of(array)); // Array
-      console.log(Type.is(array, Array)); // true
+      console.log(Type.is(array, Array)); // false
+      console.log(Type.is(array, "Array")); // true
     });
   </script>
 </head>

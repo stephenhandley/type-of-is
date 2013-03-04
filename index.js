@@ -16,7 +16,6 @@ var isBuiltIn = (function () {
   };
 })();
 
-
 var stringType = (function () {
   var _toString = ({}).toString;
   
@@ -58,12 +57,8 @@ function of (obj) {
 }
 
 function is (obj, test) {
-  if (of(test) === Function) {
-    test = test.name;
-  } else if ((obj === null) || (obj === undefined)) {
-    test = stringType(test);
-  }
-  return (stringType(obj) === test);
+  var typer = (of(test) === String) ? stringType : constructorType;
+  return (typer(obj) === test);
 };
 
 function instance (obj, test) {

@@ -164,6 +164,20 @@ console.log(Type.of(JSON));        // {}
 var s = "s";
 var t = new Type.of(s)("t");
 console.log(t);   // "t"
+
+
+// multi-frame dom
+var iFrame = document.createElement('IFRAME');
+document.body.appendChild(iFrame);
+var IFrameArray = window.frames[0].Array;
+var array = new IFrameArray();
+
+console.log(array instanceof Array);        //false
+console.log(array instanceof IFrameArray);  //true;
+console.log(Type.of(array));                // Array
+console.log(Type.is(array, Array));         // false
+console.log(Type.is(array, "Array"));       // true
+
 ```
 
 
