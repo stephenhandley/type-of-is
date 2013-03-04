@@ -26,8 +26,7 @@ console.log(Type.string(/abcd/));         // "RegExp"
 console.log(Type.string(new Date()));     // "Date"
 console.log(Type.string(new Error()));    // "Error"
 
-// Type.is(object, type) and Type(object, type) returns true if object is of type 
-// as determined by Type.of 
+// Type.is(object, type) and Type(object, type) returns true if object is of type as determined by Type.of 
 console.log(Type.is(true, Boolean));      // true
 console.log(Type.is("1231", Number));     // false
 console.log(Type.is("1231", String));     // true
