@@ -26,7 +26,7 @@ function Person (name) {
 }
 Person.prototype.barf = function () {
   return this.name + " just barfed!";
-}
+};
 
 var ralph = new Person('Ralph');
 
@@ -135,7 +135,9 @@ function Person (name) {
 Person.prototype.barf = function () {
   return this.name + " just barfed!";
 };
+
 var ralph = new Person('Ralph');
+
 console.log(Type.of(ralph));                 // [Function: Person]
 console.log(Type.is(ralph, Person));         // true
 console.log(Type.instance(ralph, Person));   // true
