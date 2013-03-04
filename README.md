@@ -67,7 +67,7 @@ or in package.json
 var Type = require('type-of-is');
 
 Type.of(obj)              // returns constructor type of an object
-Type.string(obj)          // provides type as String ({}).toString
+Type.string(obj)          // provides type as String
 Type.is(obj, type)        // tests whether obj is of type (constructor or String)
 Type.instance(obj, type)  // convenience wrapping instanceof
 
