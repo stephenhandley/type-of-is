@@ -1,6 +1,5 @@
 var Type = require('./');
 
-
 // Type.of(arg) and Type(one_argument) return constructor of type determined from ({}).toString
 console.log(Type.of('hi there ok'));  // [Function: String]
 console.log(Type.of(342));            // [Function: Number]
@@ -74,3 +73,9 @@ console.log(Type.of(-Infinity));   // [Function: Number]
 console.log(Type.of(NaN));         // [Function: Number]
 console.log(Type.of(Math));        // {}
 console.log(Type.of(JSON));        // {}
+
+
+// Returning constructor as type allows it to be used to create new objects i.e.
+var s = "s";
+var t = new Type.of(s)("t");
+console.log(t);   // "t"

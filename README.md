@@ -1,7 +1,6 @@
 # Description
 
-Sensible / unsurprising JavaScript type detection and comparison using a combination of ({}).toString and constructor.
-
+Sensible / unsurprising JavaScript type detection and comparison using a combination of ({}).toString and constructors.
 
 
 ### Built in objects / primitives 
@@ -38,12 +37,14 @@ Type.instance(ralph, Person));   // true
 Type.instance(ralph, Object));   // true
 ```
 
+
 # Latest Version
 
 3.0.0
 
 
 # Installation
+
 ```
 npm install type-of-is
 ```
@@ -61,6 +62,7 @@ or in package.json
 
 
 # Usage
+
 ```javascript
 var Type = require('type-of-is');
 
@@ -73,11 +75,11 @@ Type.instance(obj, type)  // convenience wrapping instanceof
 
 Type(obj) === Type.of(obj)
 Type(obj, type) === Type.is(obj, type)
-
 ```
 
 
 # More examples
+
 ```javascript
 var Type = require('type-of-is');
 
@@ -126,6 +128,7 @@ var t = new Stringy("hihihi");
 console.log((s == t));                    // true
 console.log((s === t));                   // false
 
+
 // User defined objects should be instances of Objects but also can get actual constructor type
 function Person (name) {
   this.name = name;
@@ -154,21 +157,29 @@ console.log(Type.of(NaN));         // [Function: Number]
 console.log(Type.of(Math));        // {}
 console.log(Type.of(JSON));        // {}
 
+
+// Returning constructor as type allows it to be used to create new objects i.e.
+var s = "s";
+var t = new Type.of(s)("t");
+console.log(t);   // "t"
 ```
 
 
 # Rationale
-typeof is unreliable for many reason (Array as object, null as object, etc.), and constructor checking is unreliable in multi-frame dom environments. 
 
-Type comparison using strings whose string case / formatting differs from constructor / type names introduces unnecessary complexity
+Try to iron over some of the surprises in JavaScript type detection
 
-Returning constructor as type allows it to be used to create new objects i.e.
-```javascript
-var s = "s";
-var t = new Type.of(s)("t");
-```
+1. typeof is unreliable / surprising in multiple cases (Array -> object, null -> object, etc.)
+
+2. constructor checking is unreliable in multi-frame dom environments
+
+3. type comparison using strings whose string case / formatting differs from constructor names introduces unnecessary complexity 
+
+4. ({}).toString returns "[object Object]" for objects created via new rather than constructor name called with new
+
 
 # Links
+
 http://ecma262-5.com/ELS5_HTML.htm
 
 http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
@@ -181,4 +192,5 @@ http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robus
 
 
 #Build status
+
 [![build status](https://secure.travis-ci.org/stephenhandley/type-of-is.png)](http://travis-ci.org/stephenhandley/type-of-is)
