@@ -33,8 +33,8 @@ var ralph = new Person('Ralph');
 Type.of(ralph);                  // [Function: Person]
 Type.is(ralph, Person);          // true
 Type.is(ralph, Object);          // false
-Type.instance(ralph, Person));   // true
-Type.instance(ralph, Object));   // true
+Type.instance(ralph, Person);    // true
+Type.instance(ralph, Object);    // true
 ```
 
 
