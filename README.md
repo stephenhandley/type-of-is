@@ -155,7 +155,7 @@ var s = "s";
 var t = new Type.of(s)("t");
 ```
 
-Relevant reading / inspiration
+# Links
 http://ecma262-5.com/ELS5_HTML.htm
 http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
 http://skilldrick.co.uk/2011/09/understanding-typeof-instanceof-and-constructor-in-javascript/
