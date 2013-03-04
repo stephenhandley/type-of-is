@@ -1,6 +1,7 @@
 # Description
 
-Sensible JavaScript type detection and comparison. 
+Sensible / unsurprising JavaScript type detection and comparison using a combination of ({}).toString and constructor.
+
 
 
 ### Built in objects / primitives 
@@ -36,9 +37,6 @@ Type.is(ralph, Object);          // false
 Type.instance(ralph, Person));   // true
 Type.instance(ralph, Object));   // true
 ```
-
-Type determination uses a combination using ({}).toString and constructor
-
 
 # Latest Version
 
@@ -141,11 +139,26 @@ console.log(Type.is(ralph, Person));         // true
 console.log(Type.instance(ralph, Person));   // true
 console.log(Type.instance(ralph, Object));   // true
 
+
+// arguments is weird edge case, there's no Arguments global but typeof arguments is "arguments"
+// type returned is Object, but not sure what would be preferable
+(function () {
+  console.log(Type.of(arguments));          // [Function: Object]
+})();
+
+
+// other built-ins
+console.log(Type.of(Infinity));    // [Function: Number]
+console.log(Type.of(-Infinity));   // [Function: Number]
+console.log(Type.of(NaN));         // [Function: Number]
+console.log(Type.of(Math));        // {}
+console.log(Type.of(JSON));        // {}
+
 ```
 
 
 # Rationale
-typeof is unreliable for many reason (Array as object, null as object etc.), and constructor checking is unreliable in multi-frame dom environments. 
+typeof is unreliable for many reason (Array as object, null as object, etc.), and constructor checking is unreliable in multi-frame dom environments. 
 
 Avoid type comparison using strings whose string case / formatting differs from constructor / type names
 

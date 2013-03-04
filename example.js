@@ -60,3 +60,17 @@ console.log(Type.is(ralph, Person));         // true
 console.log(Type.instance(ralph, Person));   // true
 console.log(Type.instance(ralph, Object));   // true
 
+
+// arguments is weird edge case, there's no Arguments global but typeof arguments is "arguments"
+// type returned is Object, but not sure what would be preferable
+(function () {
+  console.log(Type.of(arguments));          // [Function: Object]
+})();
+
+
+// other built-ins
+console.log(Type.of(Infinity));    // [Function: Number]
+console.log(Type.of(-Infinity));   // [Function: Number]
+console.log(Type.of(NaN));         // [Function: Number]
+console.log(Type.of(Math));        // {}
+console.log(Type.of(JSON));        // {}
