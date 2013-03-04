@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    var module = {};
+  </script>
+  <script src="../index.js"></script>
+  <script>
+    $(document).ready(function () {
+      var Type = module.exports;
+    
+      var iFrame = document.createElement('IFRAME');
+      document.body.appendChild(iFrame);
+      var IFrameArray = window.frames[0].Array;
+      var array = new IFrameArray();
+    
+      console.log(array instanceof Array); //false
+      console.log(array instanceof IFrameArray); //true;
+      console.log(Type.of(array)); // Array
+      console.log(Type.is(array, Array)); // true
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -17,14 +17,14 @@ Asserts({
       ["hi", String, "String"],
       [{}, Object, "Object"],
       [[], Array, "Array"],
-      [null, null, "Null"],
+      [null, null, "null"],
       [1, Number, "Number"],
       [true, Boolean, "Boolean"],
       [function() {}, Function, "Function"],
       [new Date(), Date, "Date"],
       [new Error(), Error, "Error"],
       [/blah|foo|bar/, RegExp, "RegExp"],
-      [undefined, undefined, "Undefined"],
+      [undefined, undefined, "undefined"],
       [new Person('ralph'), Person, "Person"]
     ];
 

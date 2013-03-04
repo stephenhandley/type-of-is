@@ -16,19 +16,24 @@ var isBuiltIn = (function () {
   };
 })();
 
+
 var stringType = (function () {
   var _toString = ({}).toString;
   
   return function (obj) {
-    var construct = constructorType(obj);
+    // [object Blah] -> Blah
+    var stype = _toString.call(obj).slice(8, -1);
     
-    if (construct && !isBuiltIn(construct)) {
-      return construct.name;
-      
+    if ((obj === null) || (obj === undefined)) {
+      return stype.toLowerCase();
+    }
+    
+    var ctype = constructorType(obj);
+    
+    if (ctype && !isBuiltIn(ctype)) {
+      return ctype.name;
     } else {
-      var type_string = _toString.call(obj);
-      // [object Blah] -> Blah
-      return type_string.slice(8, -1);
+      return stype;
     }
   };
 })();
@@ -53,9 +58,12 @@ function of (obj) {
 }
 
 function is (obj, test) {
-  var test_type = of(test);
-  var typer = (test_type === String) ? stringType : constructorType;
-  return (typer(obj) === test);
+  if (of(test) === Function) {
+    test = test.name;
+  } else if ((obj === null) || (obj === undefined)) {
+    test = stringType(test);
+  }
+  return (stringType(obj) === test);
 };
 
 function instance (obj, test) {
