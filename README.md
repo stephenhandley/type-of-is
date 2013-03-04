@@ -157,9 +157,13 @@ var t = new Type.of(s)("t");
 
 # Links
 http://ecma262-5.com/ELS5_HTML.htm
+
 http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
+
 http://skilldrick.co.uk/2011/09/understanding-typeof-instanceof-and-constructor-in-javascript/
+
 http://javascriptweblog.wordpress.com/2010/09/27/the-secret-life-of-javascript-primitives/
+
 http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
 
 
