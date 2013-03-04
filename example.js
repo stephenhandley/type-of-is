@@ -57,6 +57,7 @@ var ralph = new Person('Ralph');
 
 console.log(Type.of(ralph));                 // [Function: Person]
 console.log(Type.is(ralph, Person));         // true
+console.log(Type.is(ralph, Object));         // false
 console.log(Type.instance(ralph, Person));   // true
 console.log(Type.instance(ralph, Object));   // true
 
