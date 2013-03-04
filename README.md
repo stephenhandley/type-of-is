@@ -66,15 +66,15 @@ or in package.json
 ```javascript
 var Type = require('type-of-is');
 
-Type.of(obj)              // returns constructor type of an object
-Type.string(obj)          // provides type as String
-Type.is(obj, type)        // tests whether obj is of type (constructor or String)
-Type.instance(obj, type)  // convenience wrapping instanceof
+Type.of(obj);              // returns constructor type of an object
+Type.string(obj);          // provides type as String
+Type.is(obj, type);        // tests whether obj is of type (constructor or String)
+Type.instance(obj, type);  // wrapper of "obj instanceof type"
 
-// The top level Type export delegates to Type.of and Type.is based on argument count
+// The top level Type export delegates to Type.of or Type.is based on argument count
 
-Type(obj) === Type.of(obj)
-Type(obj, type) === Type.is(obj, type)
+Type(obj) === Type.of(obj);
+Type(obj, type) === Type.is(obj, type);
 ```
 
 
@@ -134,7 +134,7 @@ function Person (name) {
 }
 Person.prototype.barf = function () {
   return this.name + " just barfed!";
-}
+};
 var ralph = new Person('Ralph');
 console.log(Type.of(ralph));                 // [Function: Person]
 console.log(Type.is(ralph, Person));         // true
