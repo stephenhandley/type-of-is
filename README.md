@@ -160,7 +160,7 @@ console.log(Type.of(JSON));        // {}
 # Rationale
 typeof is unreliable for many reason (Array as object, null as object, etc.), and constructor checking is unreliable in multi-frame dom environments. 
 
-Type comparison using strings whose string case / formatting differs from constructor / type names introduces unnecessary complexity ()
+Type comparison using strings whose string case / formatting differs from constructor / type names introduces unnecessary complexity
 
 Returning constructor as type allows it to be used to create new objects i.e.
 ```javascript
