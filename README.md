@@ -3,10 +3,10 @@
 Sensible JavaScript type detection and comparison. 
 
 
-## Built in objects / primitives 
+### Built in objects / primitives 
 
 | obj                       | Type.of(obj)  | Type.is(...) === true         |
-| ------------------------- |:-------------:| -----------------------------:|
+| ------------------------- |:-------------:| ----------------------------- |
 | ```{ x : 2 }```           | Object        | ```Type.is(obj, Object)```    |
 | ```function () {}```      | Function      | ```Type.is(obj, Function)```  |
 | ```[1, 2, 3]```           | Array         | ```Type.is(obj, Array)```     |
@@ -18,7 +18,7 @@ Sensible JavaScript type detection and comparison.
 | ```new Error("barf!")```  | Error         | ```Type.is(obj, Error)```     |
 
 
-## Objects created via new
+### Objects created via new
 
 ```javascript
 function Person (name) {
