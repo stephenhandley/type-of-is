@@ -27,7 +27,7 @@ var stringType = (function () {
       return stype.toLowerCase();
     }
     
-    var ctype = constructorType(obj);
+    var ctype = of(obj);
     
     if (ctype && !isBuiltIn(ctype)) {
       return ctype.name;
@@ -37,7 +37,7 @@ var stringType = (function () {
   };
 })();
 
-function constructorType (obj) {
+function of (obj) {
   if ((obj === null) || (obj === undefined)) {
     return obj;
   } else {
@@ -45,19 +45,8 @@ function constructorType (obj) {
   }
 };
 
-function of (obj) {
-  var string_type = stringType(obj);
-  var root = (typeof window === 'undefined') ? global : window;
-
-  if (root && root.hasOwnProperty(string_type)) {
-    return root[string_type];
-  } else {
-    return constructorType(obj);
-  }
-}
-
 function is (obj, test) {
-  var typer = (of(test) === String) ? stringType : constructorType;
+  var typer = (of(test) === String) ? stringType : of;
   return (typer(obj) === test);
 };
 
@@ -75,6 +64,5 @@ module.exports = function (obj, type) {
 
 module.exports.instance = instance;
 module.exports.string = stringType;
-module.exports.construct = constructorType;
 module.exports.of = of;
 module.exports.is = is;
