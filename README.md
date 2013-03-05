@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.0.0
+3.1.0
 
 
 # Installation
@@ -55,7 +55,7 @@ or in package.json
 {
   ...
   "dependencies": {
-    "type-of-is": "3.0.0"
+    "type-of-is": "3.1.0"
   }
 }
 ```
@@ -205,6 +205,8 @@ http://skilldrick.co.uk/2011/09/understanding-typeof-instanceof-and-constructor-
 http://javascriptweblog.wordpress.com/2010/09/27/the-secret-life-of-javascript-primitives/
 
 http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
+
+http://www.2ality.com/2011/11/improving-typeof.html
 
 
 #Build status
