@@ -10,9 +10,15 @@ var isBuiltIn = (function () {
     RegExp,
     Error
   ];
+  var built_ins_length = built_ins.length;
   
   return function (_constructor) {
-    return (built_ins.indexOf(_constructor) != -1);
+    for (var i = 0; i < built_ins_length; i++) {
+      if (built_ins[i] === _constructor) {
+        return true;
+      }
+    }
+    return false;
   };
 })();
 
