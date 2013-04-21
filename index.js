@@ -1,3 +1,10 @@
+(function (factory) {
+    if (typeof exports == 'object')
+        module.exports = factory();
+    else if ((typeof define == 'function') && define.amd)
+        define(factory);
+}(function () {
+
 var isBuiltIn = (function () {
   var built_ins = [
     Object,
@@ -43,6 +50,8 @@ var stringType = (function () {
   };
 })();
 
+var exports;
+
 function of (obj) {
   if ((obj === null) || (obj === undefined)) {
     return obj;
@@ -60,7 +69,7 @@ function instance (obj, test) {
   return (obj instanceof test);
 }
 
-module.exports = function (obj, type) {
+exports = function (obj, type) {
   if (arguments.length == 1) {
     return of(obj);
   } else {
@@ -68,7 +77,11 @@ module.exports = function (obj, type) {
   }
 }
 
-module.exports.instance = instance;
-module.exports.string = stringType;
-module.exports.of = of;
-module.exports.is = is;
+exports.instance = instance;
+exports.string = stringType;
+exports.of = of;
+exports.is = is;
+
+return exports;
+
+}));
