@@ -34,14 +34,14 @@ Asserts({
       Assert.strictEqual(Type.string(expectation[0]), expectation[2], "testing Type.string(" + expectation[0] + ")");
     });
   },
-  
+
   "Type and Type.is should properly check built-in types": function () {
     var types = [
       String,
       Object,
       Array,
       null,
-      Number, 
+      Number,
       Boolean,
       Function,
       Date,
@@ -57,22 +57,22 @@ Asserts({
         String,  // expect true
       ],
       [
-        [{}, {one: 1, two: 2}], 
+        [{}, {one: 1, two: 2}],
         Object
       ],
       [
-        [[], [1,2,3], ["string", 2, false]], 
+        [[], [1,2,3], ["string", 2, false]],
         Array
       ],
       [
-        [null], 
+        [null],
         null
       ],
       [
         [1, 20324, 2342.425],
         Number
       ],
-      [ 
+      [
         [true, false],
         Boolean
       ],
@@ -112,7 +112,7 @@ Asserts({
         var true_type = group[1];
         Assert(Type(obj, true_type), "testing " + obj + ' is ' + true_type);
         Assert(Type.is(obj, true_type), "testing " + obj + ' is ' + true_type);
-        
+
         types.forEach(function(false_type) {
           if (group[1] !== false_type) {
             Assert.strictEqual(Type(obj, false_type), false, "testing " + obj + ' is ' + false_type);
@@ -122,7 +122,7 @@ Asserts({
       });
     });
   },
-  
+
   "Type.instance should work (this is stupid to test)": function () {
     var ralph = new Person('ralph');
     Assert(Type.instance(ralph, Person));

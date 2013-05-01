@@ -3,7 +3,7 @@
 Sensible / unsurprising JavaScript type detection and comparison using a combination of ({}).toString and constructors.
 
 
-### Built in objects / primitives 
+### Built in objects / primitives
 
 | obj                       | Type.of(obj)  | Type.is(...) === true         |
 | ------------------------- |:-------------:| ----------------------------- |
@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.1.0
+3.1.2
 
 
 # Installation
@@ -49,13 +49,13 @@ Type.instance(ralph, Object);    // true
 npm install type-of-is
 ```
 
-or in package.json 
+or in package.json
 
 ```json
 {
   ...
   "dependencies": {
-    "type-of-is": "3.1.0"
+    "type-of-is": "3.1.x"
   }
 }
 ```
@@ -83,7 +83,7 @@ Type(obj, type) === Type.is(obj, type);
 ```javascript
 var Type = require('type-of-is');
 
-// Type.of(arg) and Type(one_argument) return constructor of type 
+// Type.of(arg) and Type(one_argument) return constructor of type
 console.log(Type.of('hi there ok'));  // [Function: String]
 console.log(Type.of(342));            // [Function: Number]
 console.log(Type.of({}));             // [Function: Object]
@@ -189,7 +189,7 @@ Try to iron over some of the surprises in JavaScript type detection
 
 2. constructor checking is unreliable in multi-frame dom environments
 
-3. type comparison using strings whose string case / formatting differs from constructor names introduces unnecessary complexity 
+3. type comparison using strings whose string case / formatting differs from constructor names introduces unnecessary complexity
 
 4. ({}).toString returns "[object Object]" for objects created via new rather than constructor name called with new
 
