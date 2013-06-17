@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.1.2
+3.1.3
 
 
 # Installation
