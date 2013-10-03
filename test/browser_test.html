@@ -2,7 +2,9 @@
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>
-    var module = {};
+    var module = {}
+    var exports = {};
+    module.exports = exports;
   </script>
   <script src="../index.js"></script>
   <script src="./assertAll.js"></script>
@@ -50,8 +52,10 @@
           [Type.is(ralph, Person), true, "Type.is(ralph, Person) is true"],
           [Type.is(ralph, Object), false, "Type.is(ralph, Object) is false"],
           [Type.instance(ralph, Person), true, "Type.instance(ralph, Person) is true"],
-          [Type.instance(ralph, Object), true, "Type.instance(ralph, Object) is true"]
-        ])
+          [Type.instance(ralph, Object), true, "Type.instance(ralph, Object) is true"],
+          [Type.any(ralph, [Person, String]), true, "Type.any(ralph, [Person, String]) is true"],
+          [Type.any(ralph, [String, Number]), false, "Type.any(ralph, [String, Number]) is false"]
+        ]);
         
         alert("all tests passed");
         

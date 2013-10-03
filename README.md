@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.1.3
+3.2.0
 
 
 # Installation
@@ -55,7 +55,7 @@ or in package.json
 {
   ...
   "dependencies": {
-    "type-of-is": "3.1.x"
+    "type-of-is": "3.2.x"
   }
 }
 ```
@@ -163,8 +163,13 @@ console.log(Type.of(JSON));        // {}
 // Returning constructor as type allows it to be used to create new objects i.e.
 var s = "s";
 var t = new Type.of(s)("t");
-console.log(t);   // "t"
+console.log(t.toUpperCase());   // "T"
 
+// Type.any(obj, [Array, Of, Types]) and Type(obj, [Array, Of, Types]) should test whether
+// the object is any of the passed in types
+var str = 'hihihi';
+console.log(Type.any(str, [String, Number, Array])); // true
+console.log(Type(str, [Array, RegExp]));             // false
 
 // multi-frame dom
 var iFrame = document.createElement('IFRAME');

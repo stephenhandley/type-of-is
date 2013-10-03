@@ -128,5 +128,17 @@ Asserts({
     Assert(Type.instance(ralph, Person));
     Assert(Type.instance(ralph, Object));
     Assert(!Type.instance(ralph, String));
+  },
+  
+  "Type.any and Type(obj, <Array>) should check whether an array is one of many types": function () {
+    var str = 'abcdefg';
+    Assert(Type.any(str, [String]));
+    Assert(Type.any(str, [Array, String]));
+    Assert(!Type.any(str, [Array, Number]));
+    Assert(Type(str, [String]));
+    Assert(!Type(str, [Array, Number]));
+    Assert.throws(function () {
+      Type.any(str, String);
+    }, /should be array/);
   }
 });

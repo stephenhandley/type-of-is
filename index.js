@@ -1,4 +1,4 @@
-(function (factory) {
+(function (factory) {  
   if (typeof exports == 'object') {
     module.exports = factory();
   } else if ((typeof define == 'function') && define.amd) {
@@ -57,22 +57,39 @@
     } else {
       return obj.constructor;
     }
-  };
+  }
 
   function is (obj, test) {
     var typer = (of(test) === String) ? stringType : of;
     return (typer(obj) === test);
-  };
-
+  }
+  
   function instance (obj, test) {
     return (obj instanceof test);
   }
 
+  function any (obj, tests) {
+    if (!is(tests, Array)) {
+      throw ("Second argument to .any() should be array")
+    }
+    for (var i = 0; i < tests.length; i++) {
+      var test = tests[i];
+      if (is(obj, test)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   var exports = function (obj, type) {
     if (arguments.length == 1) {
       return of(obj);
     } else {
-      return is(obj, type);
+      if (is(type, Array)) {
+        return any(obj, type);
+      } else {
+        return is(obj, type);
+      }
     }
   }
 
@@ -80,6 +97,7 @@
   exports.string = stringType;
   exports.of = of;
   exports.is = is;
+  exports.any = any;
 
   return exports;
 

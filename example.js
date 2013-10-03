@@ -80,4 +80,12 @@ console.log(Type.of(JSON));        // {}
 // Returning constructor as type allows it to be used to create new objects i.e.
 var s = "s";
 var t = new Type.of(s)("t");
-console.log(t);   // "t"
+console.log(t.toUpperCase());   // "T"
+
+// Type.any(obj, [Array, Of, Types]) and Type(obj, [Array, Of, Types]) should test whether
+// the object is any of the passed in types
+var str = 'hihihi';
+console.log(Type.any(str, [String, Number, Array])); // true
+console.log(Type(str, [Array, RegExp]));             // false
+
+
