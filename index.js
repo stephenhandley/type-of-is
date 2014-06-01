@@ -34,13 +34,13 @@
     var _toString = ({}).toString;
 
     return function (obj) {
+      if (obj === null) {
+        return 'null';
+      } else if (obj === undefined) {
+        return 'undefined';
+      }
       // [object Blah] -> Blah
       var stype = _toString.call(obj).slice(8, -1);
-
-      if ((obj === null) || (obj === undefined)) {
-        return stype.toLowerCase();
-      }
-
       var ctype = of(obj);
 
       if (ctype && !isBuiltIn(ctype)) {
