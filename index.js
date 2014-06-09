@@ -77,6 +77,17 @@
     return (obj instanceof test);
   }
 
+  function extension (_Extension, _Base) {
+    var SuperClass = _Extension;
+    while (SuperClass.__super__) {
+      SuperClass = SuperClass.__super__.constructor;
+      if (SuperClass === _Base) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function any (obj, tests) {
     if (!is(tests, Array)) {
       throw ("Second argument to .any() should be array")
@@ -102,12 +113,12 @@
     }
   }
 
-  exports.instance = instance;
-  exports.string = stringType;
-  exports.of = of;
-  exports.is = is;
-  exports.any = any;
-
+  exports.instance  = instance;
+  exports.string    = stringType;
+  exports.of        = of;
+  exports.is        = is;
+  exports.any       = any;
+  exports.extension = extension;
   return exports;
 
 }));

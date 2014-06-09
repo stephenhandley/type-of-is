@@ -11,6 +11,8 @@ Person.prototype.barf = function () {
   return this.name + " just barfed!";
 }
 
+var BarfClasses = require('./BarfClasses')
+
 Asserts({
   "Type, Type.of, and Type.string should properly find types": function () {
     var of_expectations = [
@@ -140,5 +142,19 @@ Asserts({
     Assert.throws(function () {
       Type.any(str, String);
     }, /should be array/);
+  },
+
+  "Type.extension(ClassA, ClassB) should properly check CoffeeScript inheritance" : function () {
+    var Barf  = BarfClasses.Barf;
+    var Hurl  = BarfClasses.Hurl;
+    var Chuck = BarfClasses.Chuck;
+    var Derp  = BarfClasses.Derp;
+    Assert.equal(Type.extension(Hurl, Barf), true, 'Hurl < Barf');
+    Assert.equal(Type.extension(Chuck, Barf), true, 'Chuck < Barf');
+    Assert.equal(Type.extension(Chuck, Hurl), true, 'Chuck < Hurl');
+    Assert.equal(Type.extension(Barf, Hurl), false, 'Barf < Hurl');
+    Assert.equal(Type.extension(Barf, Chuck), false, 'Barf < Chuck');
+    Assert.equal(Type.extension(Barf, Derp), false, 'Barf < Derp');
+    Assert.equal(Type.extension(Derp, Barf), false, 'Derp < Barf');
   }
 });

@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.2.1
+3.3.0
 
 
 # Installation
@@ -55,7 +55,7 @@ or in package.json
 {
   ...
   "dependencies": {
-    "type-of-is": "3.2.x"
+    "type-of-is": "~3.3.0"
   }
 }
 ```
@@ -70,6 +70,7 @@ Type.of(obj);              // returns constructor type of an object
 Type.string(obj);          // provides type as String
 Type.is(obj, type);        // tests whether obj is of type (constructor or String)
 Type.instance(obj, type);  // wrapper of "obj instanceof type"
+Type.extension(SomeCoffeeScriptClassThatExtendsBarf, SomeCoffeeScriptClassNamedBarf)
 
 // The top level Type export delegates to Type.of or Type.is based on argument count
 
