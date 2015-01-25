@@ -84,6 +84,9 @@
       if (SuperClass === _Base) {
         return true;
       }
+      if (SuperClass.constructor.name === _Base.constructor.name) {
+        return true;
+      }
     }
     return false;
   }

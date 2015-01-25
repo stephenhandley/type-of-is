@@ -40,7 +40,7 @@ Type.instance(ralph, Object);    // true
 
 # Latest Version
 
-3.3.0
+3.3.1
 
 
 # Installation
@@ -55,7 +55,7 @@ or in package.json
 {
   ...
   "dependencies": {
-    "type-of-is": "~3.3.0"
+    "type-of-is": "~3.3.1"
   }
 }
 ```
