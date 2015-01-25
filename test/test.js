@@ -145,16 +145,43 @@ Asserts({
   },
 
   "Type.extension(ClassA, ClassB) should properly check CoffeeScript inheritance" : function () {
-    var Barf  = BarfClasses.Barf;
-    var Hurl  = BarfClasses.Hurl;
-    var Chuck = BarfClasses.Chuck;
-    var Derp  = BarfClasses.Derp;
-    Assert.equal(Type.extension(Hurl, Barf), true, 'Hurl < Barf');
-    Assert.equal(Type.extension(Chuck, Barf), true, 'Chuck < Barf');
-    Assert.equal(Type.extension(Chuck, Hurl), true, 'Chuck < Hurl');
-    Assert.equal(Type.extension(Barf, Hurl), false, 'Barf < Hurl');
-    Assert.equal(Type.extension(Barf, Chuck), false, 'Barf < Chuck');
-    Assert.equal(Type.extension(Barf, Derp), false, 'Barf < Derp');
-    Assert.equal(Type.extension(Derp, Barf), false, 'Derp < Barf');
+    var Grandparent = BarfClasses.Grandparent;
+    var Parent      = BarfClasses.Parent;
+    var Child       = BarfClasses.Child;
+    var Derp        = BarfClasses.Derp;
+
+    var da_expectations = {
+      yes : [
+        [Parent, Grandparent],
+        [Child, Grandparent],
+        [Child, Parent]
+      ],
+
+      no : [
+        [Grandparent, Parent],
+        [Grandparent, Child],
+        [Child, Derp],
+        [Derp, Child],
+        [Child, Child],
+        [Parent, Parent],
+        [Grandparent, Grandparent]
+      ]
+    }
+
+    for (var key in da_expectations) {
+      if (da_expectations.hasOwnProperty(key)) {
+        var expected = (key === 'yes');
+        var expectations = da_expectations[key];
+
+        expectations.forEach(function (expectation) {
+          var child  = expectation[0];
+          var parent = expectation[1];
+
+          var actual = Type.extension(child, parent);
+          var description = child.name + ' < ' + parent.name;
+          Assert.equal(actual, expected, description);
+        });
+      }
+    }
   }
 });

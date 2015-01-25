@@ -1,19 +1,19 @@
-class Barf 
+class Grandparent 
   hi : 'hi'
 
-class Hurl extends Barf
+class Parent extends Grandparent
   hi : 'ralph'
 
-class Chuck extends Hurl
+class Child extends Parent
   hi : 'UP'
 
 class Derp
   hi : 'no'
 
 module.exports = {
-  Barf  : Barf
-  Hurl  : Hurl
-  Chuck : Chuck
-  Derp  : Derp
+  Grandparent : Grandparent
+  Parent      : Parent
+  Child       : Child
+  Derp        : Derp
 }
 

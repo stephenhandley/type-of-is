@@ -78,17 +78,7 @@
   }
 
   function extension (_Extension, _Base) {
-    var SuperClass = _Extension;
-    while (SuperClass.__super__) {
-      SuperClass = SuperClass.__super__.constructor;
-      if (SuperClass === _Base) {
-        return true;
-      }
-      if (SuperClass.constructor.name === _Base.constructor.name) {
-        return true;
-      }
-    }
-    return false;
+    return instance(_Extension.prototype, _Base);
   }
 
   function any (obj, tests) {
