@@ -37,9 +37,9 @@
       // For now work around this bug in PhantomJS
       // https://github.com/ariya/phantomjs/issues/11722
       if (obj === null) {
-        return 'null';
+        return 'Null';
       } else if (obj === undefined) {
-        return 'undefined';
+        return 'Undefined';
       }
 
       // [object Blah] -> Blah
