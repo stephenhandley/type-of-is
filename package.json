@@ -4,20 +4,16 @@
   "description": "Determine and test types using constructor or {}.toString",
   "license": "MIT",
   "main": "index.js",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/stephenhandley/type-of-is"
   },
-
   "bugs": {
-    "url" : "http://github.com/stephenhandley/type-of-is/issues"
+    "url": "http://github.com/stephenhandley/type-of-is/issues"
   },
-
   "scripts": {
     "test": "node test/test.js"
   },
-
   "keywords": [
     "type",
     "types",
@@ -26,20 +22,17 @@
     "type.of",
     "type.is"
   ],
-
-  "directories" : {
-    "lib" : ".",
-    "test" : "test"
+  "directories": {
+    "lib": ".",
+    "test": "test"
   },
-
-  "engines" : {
-    "node" : ">=0.10.5"
+  "engines": {
+    "node": ">=0.10.5"
   },
-
   "devDependencies": {
-    "asserts": "4.0.x"
+    "asserts": "4.0.x",
+    "jasmine": "^2.4.1"
   },
-
   "author": {
     "name": "Stephen Handley",
     "email": "stephen.handley@gmail.com",
