@@ -12,7 +12,7 @@
     "url": "http://github.com/stephenhandley/type-of-is/issues"
   },
   "scripts": {
-    "test": "node test/test.js"
+    "test": "./node_modules/.bin/jasmine"
   },
   "keywords": [
     "type",
