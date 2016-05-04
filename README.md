@@ -157,8 +157,8 @@ console.log(Type.instance(ralph, Object));   // true
 console.log(Type.of(Infinity));    // [Function: Number]
 console.log(Type.of(-Infinity));   // [Function: Number]
 console.log(Type.of(NaN));         // [Function: Number]
-console.log(Type.of(Math));        // {}
-console.log(Type.of(JSON));        // {}
+console.log(Type.of(Math));        // [Function: Object]
+console.log(Type.of(JSON));        // [Function: Object]
 
 
 // Returning constructor as type allows it to be used to create new objects i.e.
