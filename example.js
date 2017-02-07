@@ -1,6 +1,6 @@
 var Type = require('./');
 
-// Type.of(arg) and Type(one_argument) return constructor of type 
+// Type.of(arg) and Type(one_argument) return constructor of type
 console.log(Type.of('hi there ok'));  // [Function: String]
 console.log(Type.of(342));            // [Function: Number]
 console.log(Type.of({}));             // [Function: Object]
@@ -11,15 +11,15 @@ console.log(Type(true));              // [Function: Boolean]
 console.log(Type(function () {}));    // [Function: Function]
 console.log(Type(/abcd/));            // [Function: RegExp]
 console.log(Type(new Date()));        // [Function: Date]
-console.log(Type(new Error()));       // [Function: Error]
+console.log(Type(new Error()));       // { [Function: Error] stackTraceLimit: 10 }
 
 // Type.string(arg) returns the string name of constructor
 console.log(Type.string('hi there ok'));  // "String"
 console.log(Type.string(342));            // "Number"
 console.log(Type.string({}));             // "Object"
 console.log(Type.string([1, 2, 3]));      // "Array"
-console.log(Type.string(null));           // "Null"
-console.log(Type.string(undefined));      // "Undefined"
+console.log(Type.string(null));           // "null"
+console.log(Type.string(undefined));      // "undefined"
 console.log(Type.string(true));           // "Boolean"
 console.log(Type.string(function () {})); // "Function"
 console.log(Type.string(/abcd/));         // "RegExp"
@@ -73,8 +73,8 @@ console.log(Type.instance(ralph, Object));   // true
 console.log(Type.of(Infinity));    // [Function: Number]
 console.log(Type.of(-Infinity));   // [Function: Number]
 console.log(Type.of(NaN));         // [Function: Number]
-console.log(Type.of(Math));        // {}
-console.log(Type.of(JSON));        // {}
+console.log(Type.of(Math));        // [Function: Object]
+console.log(Type.of(JSON));        // [Function: Object]
 
 
 // Returning constructor as type allows it to be used to create new objects i.e.
@@ -87,5 +87,3 @@ console.log(t.toUpperCase());   // "T"
 var str = 'hihihi';
 console.log(Type.any(str, [String, Number, Array])); // true
 console.log(Type(str, [Array, RegExp]));             // false
-
-

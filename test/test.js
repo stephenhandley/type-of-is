@@ -1,6 +1,5 @@
 var Path = require('path');
 var Assert = require('assert');
-var Asserts = require('asserts');
 
 var Type = require(Path.join(__dirname, '..'));
 
@@ -9,11 +8,11 @@ function Person (name) {
 }
 Person.prototype.barf = function () {
   return this.name + " just barfed!";
-}
+};
 
-var BarfClasses = require('./BarfClasses')
+var BarfClasses = require('./BarfClasses');
 
-Asserts({
+module.exports = {
   "Type, Type.of, and Type.string should properly find types": function () {
     var of_expectations = [
       ["hi", String, "String"],
@@ -27,7 +26,8 @@ Asserts({
       [new Error(), Error, "Error"],
       [/blah|foo|bar/, RegExp, "RegExp"],
       [undefined, undefined, "undefined"],
-      [new Person('ralph'), Person, "Person"]
+      [new Person('ralph'), Person, "Person"],
+      [function(){}.prototype, 'x', 'function prototype']
     ];
 
     of_expectations.forEach(function(expectation) {
@@ -104,7 +104,6 @@ Asserts({
       ]
     ];
 
-
     // for each group:
     // [0] are arg 1 / objects to test
     // [1] are arg 2 / types to compare against that should return true
@@ -131,7 +130,7 @@ Asserts({
     Assert(Type.instance(ralph, Object));
     Assert(!Type.instance(ralph, String));
   },
-  
+
   "Type.any and Type(obj, <Array>) should check whether an array is one of many types": function () {
     var str = 'abcdefg';
     Assert(Type.any(str, [String]));
@@ -184,4 +183,4 @@ Asserts({
       }
     }
   }
-});
+};

@@ -102,8 +102,8 @@ console.log(Type.string('hi there ok'));  // "String"
 console.log(Type.string(342));            // "Number"
 console.log(Type.string({}));             // "Object"
 console.log(Type.string([1, 2, 3]));      // "Array"
-console.log(Type.string(null));           // "Null"
-console.log(Type.string(undefined));      // "Undefined"
+console.log(Type.string(null));           // "null"
+console.log(Type.string(undefined));      // "undefined"
 console.log(Type.string(true));           // "Boolean"
 console.log(Type.string(function () {})); // "Function"
 console.log(Type.string(/abcd/));         // "RegExp"
@@ -157,8 +157,8 @@ console.log(Type.instance(ralph, Object));   // true
 console.log(Type.of(Infinity));    // [Function: Number]
 console.log(Type.of(-Infinity));   // [Function: Number]
 console.log(Type.of(NaN));         // [Function: Number]
-console.log(Type.of(Math));        // {}
-console.log(Type.of(JSON));        // {}
+console.log(Type.of(Math));        // [Function: Object]
+console.log(Type.of(JSON));        // [Function: Object]
 
 
 // Returning constructor as type allows it to be used to create new objects i.e.

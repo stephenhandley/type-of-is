@@ -1,4 +1,4 @@
-(function (factory) {  
+(function (factory) {
   if (typeof exports == 'object') {
     module.exports = factory();
   } else if ((typeof define == 'function') && define.amd) {
@@ -34,21 +34,12 @@
     var _toString = ({}).toString;
 
     return function (obj) {
-      // For now work around this bug in PhantomJS
-      // https://github.com/ariya/phantomjs/issues/11722
-      if (obj === null) {
-        return 'null';
-      } else if (obj === undefined) {
-        return 'undefined';
-      }
-
       // [object Blah] -> Blah
       var stype = _toString.call(obj).slice(8, -1);
 
-      // Temporarily elided see commented on line 37 above
-      // if ((obj === null) || (obj === undefined)) {
-      //   return stype.toLowerCase();
-      // }
+      if ((obj === null) || (obj === undefined)) {
+        return stype.toLowerCase();
+      }
 
       var ctype = of(obj);
 
@@ -72,7 +63,7 @@
     var typer = (of(test) === String) ? stringType : of;
     return (typer(obj) === test);
   }
-  
+
   function instance (obj, test) {
     return (obj instanceof test);
   }
@@ -93,7 +84,7 @@
     }
     return false;
   }
-  
+
   var exports = function (obj, type) {
     if (arguments.length == 1) {
       return of(obj);

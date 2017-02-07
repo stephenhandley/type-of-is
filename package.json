@@ -1,23 +1,19 @@
 {
   "name": "type-of-is",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "description": "Determine and test types using constructor or {}.toString",
   "license": "MIT",
   "main": "index.js",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/stephenhandley/type-of-is"
   },
-
   "bugs": {
-    "url" : "http://github.com/stephenhandley/type-of-is/issues"
+    "url": "http://github.com/stephenhandley/type-of-is/issues"
   },
-
   "scripts": {
-    "test": "node test/test.js"
+    "test": "./node_modules/.bin/mocha --no-timeouts --ui exports test/test.js"
   },
-
   "keywords": [
     "type",
     "types",
@@ -26,20 +22,16 @@
     "type.of",
     "type.is"
   ],
-
-  "directories" : {
-    "lib" : ".",
-    "test" : "test"
+  "directories": {
+    "lib": ".",
+    "test": "test"
   },
-
-  "engines" : {
-    "node" : ">=0.10.5"
+  "engines": {
+    "node": ">=0.10.5"
   },
-
   "devDependencies": {
-    "asserts": "4.0.x"
+    "mocha": "^3.2.0"
   },
-
   "author": {
     "name": "Stephen Handley",
     "email": "stephen.handley@gmail.com",
