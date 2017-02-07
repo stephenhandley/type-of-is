@@ -26,8 +26,7 @@ module.exports = {
       [new Error(), Error, "Error"],
       [/blah|foo|bar/, RegExp, "RegExp"],
       [undefined, undefined, "undefined"],
-      [new Person('ralph'), Person, "Person"],
-      [function(){}.prototype, 'x', 'function prototype']
+      [new Person('ralph'), Person, "Person"]
     ];
 
     of_expectations.forEach(function(expectation) {
